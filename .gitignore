@@ -2,3 +2,5 @@ venv
 __pychache__
 .DS_Store
 .sql.db
+.env.pro
+.env.dev
