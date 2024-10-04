@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+httpx
+pika
+aio_pika
+python-dotenv
+requests
+python-consul

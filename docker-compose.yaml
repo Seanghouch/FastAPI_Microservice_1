@@ -1,0 +1,60 @@
+version: '3'
+
+services:
+  consul:
+    image: consul:1.15.4
+    ports:
+      - "8500:8500"
+    container_name: consul
+    networks:
+      - fastapi_network
+
+  api_gateway-1:
+    build: ./api_gateway
+    image: seanghouch/api_gateway:v1
+    ports:
+      - "8000:8000"
+    container_name: api_gateway-1
+    networks:
+      - fastapi_network
+
+  api_gateway-2:
+    build: ./api_gateway
+    image: seanghouch/api_gateway:v1
+    ports:
+      - "8001:8001"
+    container_name: api_gateway-2
+    networks:
+      - fastapi_network
+
+  order_service:
+    build: ./order_service
+    image: seanghouch/order_service:v1
+    ports:
+      - "8002:8002"
+    container_name: order_service
+    networks:
+      - fastapi_network
+
+  delivery_service:
+    build: ./delivery_service
+    image: seanghouch/delivery_service:v1
+    ports:
+      - "8003:8003"
+    container_name: delivery_service
+    networks:
+      - fastapi_network
+
+  nginx:
+    image: nginx
+    volumes:
+      - "./nginx.conf:/etc/nginx/nginx.conf"
+    ports:
+      - "9999:9999"
+    container_name: nginx
+    networks:
+      - fastapi_network
+
+networks:
+  fastapi_network:
+    driver: bridge

@@ -1,0 +1,7 @@
+CONSUL_IP = consul
+CONSUL_PORT = 8500
+CONSUL_URL = http://${CONSUL_IP}:${CONSUL_PORT}
+
+LOCAL_IP = order_service
+LOCAL_PORT = 8000
+LOCAL_URL = http://${CONSUL_IP}:${CONSUL_PORT}
